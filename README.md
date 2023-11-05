@@ -1,0 +1,1 @@
+# syneco-wp
