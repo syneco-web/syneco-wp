@@ -2,6 +2,7 @@
 import PostOnListType from "@/types/PostOnListType";
 // repository
 import RepositoryFactory from "@/repositories/RepositoryFactory";
+import PostType from "@/types/PostType";
 
 class PostService {
     static async getList(): Promise<PostOnListType[]> {
@@ -33,17 +34,16 @@ class PostService {
     // slugから記事単体を取得
     static async getOne({ id }: {
         id: string
-    }): Promise<PostOnListType | null> { // エラーがあればnullを返す
+    }): Promise<PostType | null> { // エラーがあればnullを返す
         try {
             const res = await RepositoryFactory.post.getOne({ id }) // idを引数に取る
             const data = res.data.data.post
-            const post: PostOnListType = {
+            const post: PostType = {
                 id: data.id,
                 title: data.title,
                 slug: data.slug,
                 date: data.date,
-                // content: data.content,
-                excerpt: data.excerpt,
+                content: data.content,
                 featuredImage: {
                     url: data.featuredImage.node.sourceUrl
                 },
