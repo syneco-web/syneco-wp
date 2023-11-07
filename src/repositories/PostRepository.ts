@@ -1,5 +1,5 @@
 import Repository from "./Repository";
-import { WpGraphQlPostConst } from "../constants/WpGraphQlConst";
+import { WpGraphQlPostConst } from "@/constants/WpGraphQlConst";
 
 
 class PostRepository {
@@ -8,6 +8,7 @@ class PostRepository {
     }
 
     // slugから記事単体を取得
+
     static getOne({ id }: { // idを引数にとる
         id: string
     }) {

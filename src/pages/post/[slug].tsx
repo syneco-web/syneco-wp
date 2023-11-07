@@ -1,23 +1,25 @@
 import { NextPage } from "next"
 // type
-import PostType from "../../types/PostType"
+import PostType from "@/types/PostType"
 // service
-import PostService from "../../services/PostService"
+import PostService from "@/services/PostService"
 // hooks
-import usePostSwr from "../../hooks/swr/usePostSwr"
+// import usePostSwr from "@/hooks/swr/usePostSwr"
 // component
-import CommImage from "../../components/atoms/image/CommImage"
-import Layout from "../../components/templates/Layout"
-import CategoryLabel from "../../components/atoms/label/CategoryLabel"
-import DateText from "../../components/atoms/text/DateText"
-import PostHeading from "../../components/atoms/text/PostHeading"
+import CommImage from "@/components/atoms/image/CommImage"
+import Layout from "@/components/templates/Layout"
+import CategoryLabel from "@/components/atoms/label/CategoryLabel"
+import DateText from "@/components/atoms/text/DateText"
+import PostHeading from "@/components/atoms/text/PostHeading"
 import Link from "next/link"
 
 const Post: NextPage<{
     slug: string,
     staticPost: PostType
 }> = ({ staticPost, slug }) => {
-    const post = usePostSwr({ id: slug, staticPost })
+    // const post = usePostSwr({ id: slug, staticPost })
+    const post = staticPost
+
     return (
         <Layout>
             <div className="w-main mx-auto">

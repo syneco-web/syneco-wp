@@ -27,26 +27,26 @@ export class WpGraphQlPostConst {
     }`
 
     // slugから記事単体を持ってくる
-    static one = `query PostQuery($id: ID!) {
-      post(id: $id, idType: SLUG) {
+    static one = `query PostQuery($id: ID! ) {
+      post(idType: SLUG, id: $id) {
         categories {
-          edges {
-            node {
-              name
-              slug
+              edges {
+                node {
+                  name
+                  slug
+                }
+              }
             }
-          }
-        }
-        date
-        content
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        id
-        slug
-        title
+            date
+            content
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+            id
+            slug
+            title
       }
     }`
 

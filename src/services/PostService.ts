@@ -52,7 +52,7 @@ class PostService {
                     name: data.categories.edges[0].node.name
                 }
             }
-            return post // 配列ではなくPostOnListTypeを返す
+            return post // 配列ではなくPostTypeを返す
         } catch {
             return null // エラーがあればnullを返す
         }
