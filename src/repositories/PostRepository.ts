@@ -1,26 +1,55 @@
+// const
+import { WpGraphQlPostConst } from "../constants/WpGraphQlConst";
+// type
+import OffsetPaginationType from "../types/OffsetPaginationType";
+// repository
 import Repository from "./Repository";
-import { WpGraphQlPostConst } from "@/constants/WpGraphQlConst";
-
 
 class PostRepository {
-    static getList() {
-        return Repository(WpGraphQlPostConst.list).getWp()
+    static getList({ offsetPagination, categoryId }: {
+        offsetPagination: OffsetPaginationType,
+        categoryId?: number
+    }) {
+        if (categoryId) {
+            return Repository(
+                WpGraphQlPostConst.listByCategory,
+                { variables: { offsetPagination, categoryId } }
+            ).getWp()
+        }
+        return Repository(
+            WpGraphQlPostConst.list,
+            { variables: { offsetPagination } }
+        ).getWp()
     }
 
-    // slugから記事単体を取得
-
-    static getOne({ id }: { // idを引数にとる
+    static getOne({ id }: {
         id: string
     }) {
         return Repository(
             WpGraphQlPostConst.one,
-            { variables: { id } } // ココが今までと違う！
+            { variables: { id } }
         ).getWp()
     }
 
-    // 全記事のslugを取得
     static getAllSlugList() {
         return Repository(WpGraphQlPostConst.allSlugList).getWp()
+    }
+
+    static getAllCategorySlugList() {
+        return Repository(WpGraphQlPostConst.allCategorySlugList).getWp()
+    }
+
+    static getCategoryIdBySlug({ slug }: {
+        slug: string
+    }) {
+        return Repository(
+            WpGraphQlPostConst.categoryIdBySlug,
+            { variables: { id: slug } }
+        ).getWp()
+    }
+
+    static getTotal() {
+        return Repository(WpGraphQlPostConst.total).getWp()
     }
     
 }
