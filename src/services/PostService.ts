@@ -5,7 +5,7 @@ import PostType from "../types/PostType"
 import PostOnListType from "../types/PostOnListType"
 // repository
 import RepositoryFactory from "../repositories/RepositoryFactory"
-import OffsetPaginationType from "@/types/OffsetPaginationType"
+import OffsetPaginationType from "../types/OffsetPaginationType"
 
 class PostService {
     static async getList({ page, categoryId }:{
@@ -80,33 +80,25 @@ class PostService {
         }
     }
 
-
-    static async getAllCategorySlugList(): Promise<{
-        params: {
-            slug: string
-        }
-    }[]> {
-        try {
-            const res = await RepositoryFactory.post.getAllCategorySlugList()
-            return res.data.data.categories.edges.map((data: any) => {
-                return { params: { slug: data.node.slug } }
-            })
-        } catch {
-            return []
-        }
-    }
-
-    static async getAllPageList(): Promise<{
-        params: {
-            page: string
-        }
-    }[]> {
+    static async getAllPageAndCategoryList() {
         const total = await this.getTotal()
-        const pageTotal = Math.ceil(total / PostConst.sizePerPage)
-        const pageList = [...Array(pageTotal)].map((_, i) => i + 1)
-        return pageList.map((page:number) => {
-            return { params: { page: page.toString() }}
+        const pageList = this._makePageList(total)
+        var allPageAndCategoryList = pageList.map((page:number) => {
+            return { params: { param: ['page', page.toString()] }}
         })
+
+        const res = await RepositoryFactory.post.getAllCategorySlugList()
+        res.data.data.categories.edges.forEach((data: any) => {
+            const categorySlug = data.node.slug
+            const total = data.node.posts.pageInfo.offsetPagination.total
+            const pageList = this._makePageList(total)
+            pageList.forEach((page:number) => {
+                allPageAndCategoryList.push({
+                    params: { param: ['category', categorySlug, 'page', page.toString()]
+                }})
+            })
+        })
+        return allPageAndCategoryList
     }
 
     static async getCategoryIdBySlug({ slug }: {
@@ -123,6 +115,11 @@ class PostService {
 
     private static _makeOffsetPaginationFromPage(page: number): OffsetPaginationType {
         return { offset: (page - 1) * PostConst.sizePerPage, size: PostConst.sizePerPage }
+    }
+
+    private static _makePageList(total: number) {
+        const pageTotal = Math.ceil(total / PostConst.sizePerPage)
+        return [...Array(pageTotal)].map((_, i) => i + 1)
     }
     
 }

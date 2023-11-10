@@ -94,7 +94,7 @@ const Header = () => {
                     src="/logo_header.png"
                     alt="logo"
                     width={240}
-                    height={54}
+                    height={48}
                 />
                 </Link>
             </div>
@@ -278,10 +278,12 @@ const Header = () => {
             <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
-                    alt="Workflow"
+                  <Image
+                      className="cursor-pointer h-8 w-auto sm:h-10 hover:opacity-75"
+                      src="/logo_header.png"
+                      alt="logo"
+                      width={190}
+                      height={38}
                   />
                 </div>
                 <div className="-mr-2">
