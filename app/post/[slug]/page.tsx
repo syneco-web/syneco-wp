@@ -38,7 +38,7 @@ const Post = async ({ params }: PostPageProps) => {
                 </div>
                 <div className="flex mb-4">
                     <div className="mr-3">
-                        <Link href={post!.category.slug}>
+                    <Link href={`/category/${post!.category.slug}`}>
                             <CategoryLabel>{post!.category.name}</CategoryLabel>
                         </Link>
                     </div>
