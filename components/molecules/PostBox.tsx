@@ -14,31 +14,24 @@ const PostBox = ({ post }: {
         <article className='shadow-sm shadow-gray-200'>
             <div>
                 <Link href={`/post/${post.slug}`}>
-                    <a>
-                        <CommImage 
-                            src={post.featuredImage.url}
-                            alt=""
-                            className="w-full h-56" />
-                    </a>
+                    <CommImage 
+                        src={post.featuredImage.url}
+                        alt=""
+                        className="w-full h-56" />
                 </Link>
             </div>
             <div className='py-4 px-5'>
                 <div className="flex mb-2">
                     <div className="mr-2">
                         <Link href={`/category/${post.category.slug}`}>
-
-                           <a>
-                                <CategoryLabel>{post.category.name}</CategoryLabel>
-                            </a>
+                            <CategoryLabel>{post.category.name}</CategoryLabel>
                         </Link>
                     </div>
                     <DateText>{post.date}</DateText>
                 </div>
                 <div className="mb-2">
                     <Link href={`/post/${post.slug}`}>
-                        <a>
-                            <ArticleOnListHeading>{post.title}</ArticleOnListHeading>
-                        </a>
+                        <ArticleOnListHeading>{post.title}</ArticleOnListHeading>
                     </Link>
                 </div>
                 <div dangerouslySetInnerHTML={{__html: post.excerpt}}></div>

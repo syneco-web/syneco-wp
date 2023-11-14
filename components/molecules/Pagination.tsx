@@ -1,5 +1,5 @@
 // const
-import PaginationConst from "../../constants/PaginationConst"
+import PaginationConst from "@/constants/PaginationConst"
 
 const Pagination = ({ total, sizePerPage, currentPage, path }: {
     total: number,

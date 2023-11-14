@@ -1,7 +1,7 @@
 // const
-import { WpGraphQlPostConst } from "../constants/WpGraphQlConst";
+import { WpGraphQlPostConst } from "@/constants/WpGraphQlConst";
 // type
-import OffsetPaginationType from "../types/OffsetPaginationType";
+import OffsetPaginationType from "@/types/OffsetPaginationType";
 // repository
 import Repository from "./Repository";
 

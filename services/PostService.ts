@@ -1,11 +1,11 @@
 // const
-import PostConst from "../constants/PostConst"
+import PostConst from "@/constants/PostConst"
 // type
-import PostType from "../types/PostType"
-import PostOnListType from "../types/PostOnListType"
+import PostType from "@/types/PostType"
+import PostOnListType from "@/types/PostOnListType"
 // repository
-import RepositoryFactory from "../repositories/RepositoryFactory"
-import OffsetPaginationType from "../types/OffsetPaginationType"
+import RepositoryFactory from "@/repositories/RepositoryFactory"
+import OffsetPaginationType from "@/types/OffsetPaginationType"
 
 class PostService {
     static async getList({ page, categoryId }:{
